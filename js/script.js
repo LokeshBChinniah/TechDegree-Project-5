@@ -5,7 +5,6 @@ let cards = document.querySelectorAll('.card');
 const containerDiv = document.createElement('DIV');
 const next = document.getElementById("modal-next");
 const prev = document.getElementById("modal-prev");
-const buttonContainer = document.getElementsByClassName("modal-btn-container");
 let searchInput;
 
 function fetchData(URL) { //reusable fetch function, parses user information to JSON
@@ -71,43 +70,11 @@ function generateModal(user, i) {//generates and dsplays user modal
                 <p class="modal-text">Birthday ${formattedDOB}</p>
             </div>
         </div>
-        <div class="modal-btn-container">
-            <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
-            <button type="button" id="modal-next" class="modal-next btn">Next</button>
-        </div>
     </div>
     `;
 
     containerDiv.innerHTML += html;
     bodyContent.appendChild(containerDiv);
-    for (let j = 0; j < buttonContainer.length; j += 1) {
-        buttonContainer[j].addEventListener('click', e => {
-            console.log('clicked');
-            if (e.target.id === "modal-next") {
-
-
-                
-                if (i === user.length - 1) {
-                    console.log('if');
-                    i = 0;
-
-                }
-                generateModal(user, i + 1);
-                closeModal();
-            } else if (e.target.id === "modal-prev") {
-                console.log(e.target);
-
-                if (i === 0) {
-                    i = user.length;
-                   
-                }
-                generateModal(user, i - 1);
-                closeModal();
-            }
-
-        })
-    }
-
 
 }
 
@@ -115,16 +82,11 @@ function eventListener(user) { //function iterates through users cards, when cli
     //close modal function called to close modal when X button is clicked
 
 let cards = document.querySelectorAll('.card');
-console.log(buttonContainer);
 
 for (let i = 0; i < cards.length; i++) {
 cards[i].addEventListener('click', () => {
-
 generateModal(user, i);
-
 closeModal();
-
-
 })
 
 }
@@ -135,6 +97,5 @@ function closeModal() { //function when called will close modal when X button is
     const closeBtn = document.getElementById("modal-close-btn");
     closeBtn.addEventListener('click', () => {
         containerDiv.remove();
-
     })
 }
