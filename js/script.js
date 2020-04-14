@@ -3,9 +3,7 @@ const galleryContent = document.getElementById('gallery');
 const bodyContent = document.querySelector('body');
 let cards = document.querySelectorAll('.card');
 const containerDiv = document.createElement('DIV');
-const next = document.getElementById("modal-next");
-const prev = document.getElementById("modal-prev");
-let searchInput;
+
 
 function fetchData(URL) { //reusable fetch function, parses user information to JSON
     return fetch(URL)
@@ -84,10 +82,10 @@ function eventListener(user) { //function iterates through users cards, when cli
 let cards = document.querySelectorAll('.card');
 
 for (let i = 0; i < cards.length; i++) {
-cards[i].addEventListener('click', () => {
-generateModal(user, i);
-closeModal();
-})
+    cards[i].addEventListener('click', () => {
+        generateModal(user, i);
+        closeModal();
+    })
 
 }
 
